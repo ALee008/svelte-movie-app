@@ -1,7 +1,19 @@
 <script>
-
+    // because the public path becomes the root path after building the app the route to the logos start with `/images`
+    const svelteLogo = "/images/svelte-logo.svg";
+    const tmdbLogo = "/images/tmdb_logo.svg";
 </script>
-Header
+
+<header class="wrapper">
+    <div class="content">
+        <a href="/" aria-label="Go Home">
+            <img class="svelte-logo" src={svelteLogo} alt="svelte-logo" />
+        </a>
+        <img class="tmdb-logo" src={tmdbLogo} alt="tmdb-logo" />
+    </div>
+</header>
+
+
 <style>
   .wrapper {
     background: #1c1c1c;
@@ -14,7 +26,7 @@ Header
     justify-content: space-between;
     max-width: 1280px;
     min-height: 120px;
-    padding: 20px 0px;
+    padding: 20px 0;
     margin: 0 auto;
     box-sizing: border-box;
   }
@@ -32,7 +44,7 @@ Header
   @media screen and (max-width: 500px) {
     .content {
       max-width: 1280px;
-      min-height: 0px;
+      min-height: 0;
     }
 
     .svelte-logo {
@@ -43,7 +55,7 @@ Header
     .tmdb-logo {
       display: inline-block;
       width: 80px;
-      margin-top: 0px;
+      margin-top: 0;
     }
   }
 </style>

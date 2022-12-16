@@ -3,7 +3,6 @@
     import {onMount} from 'svelte';
     import {fetchMovies} from "../api";
     // Components
-    import Header from '../components/Header.svelte';
     import Hero from '../components/Hero.svelte';
     import Search from '../components/Search.svelte';
     import Grid from '../components/Grid.svelte';
@@ -36,7 +35,6 @@
 
 </script>
 
-<Header/>
 <Hero/>
 <Search/>
 <Grid/>
