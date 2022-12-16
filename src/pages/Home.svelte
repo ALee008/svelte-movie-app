@@ -9,6 +9,7 @@
     import Thumb from "../components/Thumb.svelte";
     import LoadMoreButton from "../components/LoadMoreButton.svelte";
     import Spinner from "../components/Spinner.svelte";
+    import {IMAGE_BASE_URL, BACKDROP_SIZE} from "../config";
 
     // set up a local states. In Svelte creating a state is as easy as creating a variable.
     let movies = {movies: []};
@@ -35,7 +36,20 @@
 
 </script>
 
-<Hero/>
+{#if error}
+    <p>Somthing whent wrong ...</p>
+{:else}
+    <!-- If we haven't got the `Hero` image yet and if search is selected don't show `Hero` image-->
+    {#if movies.heroImage && !searchTerm}
+        <!-- The property names in the props come from the API-->
+        <Hero
+                image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${movies.heroImage.backdrop_path}`}
+                title={movies.heroImage.original_title}
+                text={movies.heroImage.overview}
+        />
+    {/if}
+{/if}
+
 <Search/>
 <Grid/>
 <Thumb/>
