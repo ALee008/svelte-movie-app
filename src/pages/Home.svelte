@@ -71,8 +71,8 @@
 </Grid>
 
 {#if isLoading}
-<Spinner/>
-    {/if}
+    <Spinner/>
+{/if}
 
 {#if !isLoading && movies.currentPage < movies.totalPages}
     <LoadMoreButton on:loadMore={handleLoadMore}>
