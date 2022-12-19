@@ -30,6 +30,13 @@
         isLoading = false;
     }
 
+    // Home.svelte will handle the event because its job is to fetch the data
+    const handleSearch = event => {
+        searchTerm = event.detail.searchText;
+        movies.movies = [];  // clear movies when we do a search
+        handleFetchMovies(false, searchTerm);
+    }
+
     onMount(async () => {
         handleFetchMovies(false, searchTerm)
     })
@@ -50,7 +57,7 @@
     {/if}
 {/if}
 
-<Search/>
+<Search on:search={handleSearch}/>
 <Grid/>
 <Thumb/>
 <LoadMoreButton/>
