@@ -1,6 +1,5 @@
 <script>
     export let movie;
-
 </script>
 
 <div class="wrapper">

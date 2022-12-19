@@ -36,10 +36,10 @@
 </script>
 {#if error}
     <p>Something went wrong ...</p>
-{:else}
+{:else if movie}
     <div transition:fade={{ duration: 300}}>
         <Navigation movie={movie.original_title}/>
-        <MovieInfo/>
+        <MovieInfo {movie}/>
         <MovieInfoBar/>
         <Grid header="Actors"/>
         <Actor/>
