@@ -1,9 +1,24 @@
 <script>
+    import {calcTime, convertMoney} from "../helpers";
 
+    export let time;
+    export let budget;
+    export let revenue;
 </script>
 
-MovieInfoBar
-
+<div class="wrapper">
+    <div class="content">
+      <div class="content-col">
+          <p>Running Time: {calcTime(time)}</p>
+      </div>
+      <div class="content-col">
+          <p>Budget: {convertMoney(budget)}</p>
+      </div>
+      <div class="content-col">
+          <p>Revenue: {convertMoney(revenue)}</p>
+      </div>
+    </div>
+</div>
 <style>
   .wrapper {
     display: flex;
