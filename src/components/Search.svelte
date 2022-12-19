@@ -12,7 +12,7 @@
     // $: test = searchText + "this is what we want to add ..."
     $: {  // this 'function' will trigger on mount, so ...
         // ... only do something if user enters searchText
-        if (searchText) {
+        if (searchText !== undefined) {
             console.log("Trigger")
             clearTimeout(timeOut);
             timeOut = setTimeout(() => {
