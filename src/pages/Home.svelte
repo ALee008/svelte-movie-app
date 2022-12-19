@@ -23,7 +23,7 @@
             error = false;
             // `fetchMovies` takes the state `movies` and returns an updated (copied) version
             movies = await fetchMovies(movies, loadMore, searchTerm);
-            console.log(movies);
+            // console.log(movies);
         } catch (err) {
             error = true;
         }
@@ -36,6 +36,8 @@
         movies.movies = [];  // clear movies when we do a search
         handleFetchMovies(false, searchTerm);
     }
+
+    const handleLoadMore = () => handleFetchMovies(true, searchTerm);
 
     onMount(async () => {
         handleFetchMovies(false, searchTerm)
@@ -67,8 +69,16 @@
         />
     {/each}
 </Grid>
-<LoadMoreButton/>
+
+{#if isLoading}
 <Spinner/>
+    {/if}
+
+{#if !isLoading && movies.currentPage < movies.totalPages}
+    <LoadMoreButton on:loadMore={handleLoadMore}>
+        Load More
+    </LoadMoreButton>
+{/if}
 
 <style>
 

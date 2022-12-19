@@ -2,12 +2,12 @@
 
 </script>
 
-Spinner
+<div class="wrapper" />
 
 <style>
   .wrapper {
     border: 5px solid #f3f3f3;
-    border-top: 5px solid #000;
+    border-top: 5px solid black;
     border-radius: 50%;
     width: 50px;
     height: 50px;
