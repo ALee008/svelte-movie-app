@@ -30,8 +30,21 @@
     }
 
     onMount(async () => {
-        handleFetchMovie();
+        const localMovie = window.localStorage.getItem(params.id)
+        if (localMovie) {
+            console.log("Grabbing from localStorage");
+            movie = JSON.parse(localMovie);
+        } else {
+            console.log("Grabbing from API")
+            handleFetchMovie();
+        }
     })
+
+    $: {
+        if (movie) {
+            window.localStorage.setItem(params.id, JSON.stringify(movie));
+        }
+    }
 
 </script>
 {#if error}
@@ -46,9 +59,9 @@
                 revenue={movie.revenue}
         />
         <Grid header="Actors">
-        {#each movie.actors as actor}
-            <Actor {actor}/>
-        {/each}
+            {#each movie.actors as actor}
+                <Actor {actor}/>
+            {/each}
         </Grid>
     </div>
 {/if}

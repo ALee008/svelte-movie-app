@@ -40,8 +40,24 @@
     const handleLoadMore = () => handleFetchMovies(true, searchTerm);
 
     onMount(async () => {
-        handleFetchMovies(false, searchTerm)
+
+        const sessionMovies = window.sessionStorage.getItem("svelte-movies");
+        if (sessionMovies) {
+            console.log("Grabbing from sessionStorage");
+            movies = JSON.parse(sessionMovies);
+        } else {
+            console.log("Grabbing from API.");
+            handleFetchMovies(false, searchTerm)
+        }
+
     })
+
+    // react if something changes
+    $: {
+        if (movies.movies.length > 0) {
+            window.sessionStorage.setItem("svelte-movies", JSON.stringify(movies));
+        }
+    }
 
 </script>
 
