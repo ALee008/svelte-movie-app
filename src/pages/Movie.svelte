@@ -1,6 +1,7 @@
 <script>
     import {onMount} from "svelte";
     import {fade} from "svelte/transition";
+    import {fetchMovie} from "../api";
 
     // Component
     import Navigation from "../components/Navigation.svelte";
@@ -16,16 +17,38 @@
     let error;
     let movie;
 
-</script>
+    const handleFetchMovie = async () => {
+        try {
+            isLoading = true;
+            error = false;
+            movie = await fetchMovie(params.id)
+        } catch (err) {
+            console.log("An error occurred, " + err);
+            error = true;
+        }
+        isLoading = false;
+    }
 
-<div transition:fade={{ duration: 300}}>
-    <Navigation/>
-    <MovieInfo/>
-    <MovieInfoBar/>
-    <Grid header="Actors"/>
-    <Actor/>
+    onMount(async () => {
+        handleFetchMovie();
+    })
+
+</script>
+{#if error}
+    <p>Something went wrong ...</p>
+{:else}
+    <div transition:fade={{ duration: 300}}>
+        <Navigation/>
+        <MovieInfo/>
+        <MovieInfoBar/>
+        <Grid header="Actors"/>
+        <Actor/>
+    </div>
+{/if}
+
+{#if isLoading}
     <Spinner/>
-</div>
+{/if}
 
 <style>
 
