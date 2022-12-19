@@ -45,8 +45,11 @@
                 budget={movie.budget}
                 revenue={movie.revenue}
         />
-        <Grid header="Actors"/>
-        <Actor/>
+        <Grid header="Actors">
+        {#each movie.actors as actor}
+            <Actor {actor}/>
+        {/each}
+        </Grid>
     </div>
 {/if}
 
